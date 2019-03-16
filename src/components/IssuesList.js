@@ -22,8 +22,9 @@ let IssuesList = ({ token, repo }) => {
     <div className="issues-container">
       <ul style={{ listStyle: 'none' }}>
         <li>
-          <span>Avatar</span>
-          <span>name</span>
+          <span></span>
+          <span></span>
+          <span></span>
           <button onClick={() => {
             setSort("created")
             sessionStorage.setItem('sort', "created");
