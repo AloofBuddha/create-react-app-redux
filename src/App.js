@@ -1,16 +1,11 @@
-import React, { Component } from 'react';
-import './App.css';
+import React from 'react';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          Hello World
-        </header>
-      </div>
-    );
-  }
+import RepoList from './components/RepoList';
+
+let App = (props) => {
+  return (
+    <RepoList />
+  );
 }
 
 export default App;
