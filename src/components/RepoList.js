@@ -13,7 +13,6 @@ let RepoList = (props) => {
 
   useEffect(() => {
     if (!token) {
-      let prompt = window.prompt || (() => false);
       let promptToken = prompt("What's your Github API key?");
       sessionStorage.setItem('token', promptToken);
       setToken(promptToken);
