@@ -5,3 +5,15 @@
     flex-direction: column;
     width: 100%;
   }
+
+.issues-container li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media (max-width: 600px) {
+  .issues-container {
+    font-size: calc(5px + 1vmin);
+  }
+}
