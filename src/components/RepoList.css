@@ -11,9 +11,3 @@
   color: white;
   width: 100%;
 }
-
-.issues-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}

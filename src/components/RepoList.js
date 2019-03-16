@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
 import './RepoList.css';
+
+import IssuesList from './IssuesList'
 
 let RepoList = (props) => {
 
+    // let apiKey = prompt("What's your Github API key?");
+  // DEBUG ONLY!
+  let token = "05e2a3655f706f69f0cd4182b35954d3f939edbd";
+
   let [repos, setRepos] = useState([]);
   let [selectedRepo, setselectedRepo] = useState(null);
-  let [issues, setIssues] = useState([]);
 
   useEffect(() => {
-      getRepos(apiKey)
+      getRepos(token)
       .then(repos => setRepos(repos));
-  }, [apiKey])
-
-  useEffect(() => {
-    if (selectedRepo) {
-      getIssues(apiKey, selectedRepo)
-      .then(issues => setIssues(issues));
-    }
-}, [selectedRepo])
+  }, [token])
 
   return (
     <div className="app-container">
@@ -36,14 +35,7 @@ let RepoList = (props) => {
         </ul>
       </div>
       {
-        selectedRepo &&
-        <div className="issues-container">
-          <ul style={{ listStyle: 'none' }}>
-          {
-            selectedRepo.id
-          }
-          </ul>
-        </div>
+        selectedRepo && <IssuesList token={token} repo={selectedRepo}/>
       }
     </div>
   );
@@ -58,23 +50,7 @@ async function getRepos(apiKey) {
     }
   })
 
-  console.log(repos.data)
   return repos.data;
-} 
-
-async function getIssues(apiKey, repo) {
-  let issues = await axios.get(
-    `https://api.github.com/repos/${repo.owner.login}/${repo.name}/issues`, {
-    headers: { 'Authorization': `token ${apiKey}` },
-    params: { 
-      sort: "created",
-      per_page: 10
-    }
-  })
-
-  console.log('issues', issues.data);
-
-  return issues.data;
 }
 
 export default RepoList;
